@@ -1,3 +1,4 @@
+from fileIO import *
 from rgbHexConvert import *
 from PIL import Image
 
@@ -40,13 +41,11 @@ def save_img_pallet(pallet_list, file):
     Convert an image into a pdn pallet text file and save it
     """
     img = str_to_img_pallet(pallet_list)
-    img.save(file + '.png')
+    save_img(file + '.png')
 
 def save_str_pallet(img, file):
     """
     Convert a pdn pallet text file into an image
     """
     lst = img_to_str_pallet(img)
-    with open(file + '.txt', 'w') as f:
-        for item in lst:
-            f.write("%s\n" % item)
+    save_list_txt(lst, file + '.txt')

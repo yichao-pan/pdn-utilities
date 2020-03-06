@@ -1,23 +1,25 @@
 from PIL import Image, ImageColor
 import os
+
 from pdnPallet import *
 from rgbHexConvert import *
+from colorReplacement import *
 from fileIO import *
-import numpy as np
-
-
 
 folder = './images'
 
-# print(hex_to_rgba('#ffffff'))
-f = open_txt('test')
-f = f.split('\n')
-save_img_pallet(f, 'test2')
+old_colors = [(0, 0, 0, 255),
+                (255, 0, 0, 255)
+              ]
+new_colors = [(200, 180, 50, 255),
+            (12, 200, 50, 255)
+              ]
 
 
-# img = get_files(folder)[0]
-# save_str_pallet(img,'test')
+img = open_image(folder + '/img0.png')
+img = img.convert('RGBA')
 
+replace_dict = create_replace_dict(old_colors, new_colors)
 
-# img.putpixel((0, 0), (255, 0, 0, 255))
-# img.save(folder + '/test1.png')
+img2 = replace_pallet(img, replace_dict)
+img2.show()
